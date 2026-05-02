@@ -38,7 +38,7 @@ import { RequestTimingInterceptor } from './common/interceptors/request-timing.i
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5433,
+      port: 5432,
       username: 'starci_user',
       password: 'starci_password',
       database: 'starci_db',

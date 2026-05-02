@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: starci_password
       POSTGRES_DB: starci_db
     ports:
-      - '5433:5432' # Dùng port 5433 để tránh đụng độ với demo trước (EN: Use 5433 to avoid collision)
+      - '5432:5432'
     restart: always
 
 volumes:
