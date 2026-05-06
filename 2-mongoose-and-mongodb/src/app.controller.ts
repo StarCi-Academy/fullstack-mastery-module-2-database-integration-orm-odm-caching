@@ -1,3 +1,7 @@
+﻿/**
+ * Controller REST cho feature App.
+ * (EN: REST controller for App feature.)
+ */
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 

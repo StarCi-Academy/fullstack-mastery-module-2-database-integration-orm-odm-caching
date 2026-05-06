@@ -1,3 +1,7 @@
+﻿/**
+ * Interceptor — request-timing.interceptor.
+ * (EN: Interceptor — request-timing.interceptor.)
+ */
 import {
   CallHandler,
   ExecutionContext,
@@ -7,7 +11,7 @@ import {
 import { Observable, tap } from 'rxjs';
 
 /**
- * RequestTimingInterceptor — Đo thời gian xử lý request và in console.
+ * RequestTimingInterceptor â€” Äo thá»i gian xá»­ lÃ½ request vÃ  in console.
  * (EN: Measures request duration and prints it to console.)
  */
 @Injectable()

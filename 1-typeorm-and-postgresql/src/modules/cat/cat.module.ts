@@ -1,3 +1,7 @@
+/**
+ * CatModule — đăng ký entity + controller + service cho feature mèo.
+ * (EN: CatModule — registers entity + controller + service for cat feature.)
+ */
 import {
     Module 
 } from "@nestjs/common"

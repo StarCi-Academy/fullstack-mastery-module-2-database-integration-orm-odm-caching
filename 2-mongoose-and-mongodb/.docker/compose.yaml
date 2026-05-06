@@ -1,0 +1,35 @@
+# Stack hạ tầng bài 2-mongoose-and-mongodb — chỉ infra, backend chạy local (nest start).
+# (EN: Infrastructure stack for 2-mongoose-and-mongodb — infra only, backend runs locally.)
+#
+# Thư mục: cd fullstack-mastery-module-2-database-integration-orm-odm-caching/2-mongoose-and-mongodb/.docker
+# (EN: Working dir: cd fullstack-mastery-module-2-database-integration-orm-odm-caching/2-mongoose-and-mongodb/.docker)
+#
+# Khởi chạy: docker compose up -d
+# (EN: Start: docker compose up -d)
+#
+# Dừng & xóa: docker compose down -v
+# (EN: Stop & clean: docker compose down -v)
+name: 2-mongoose-and-mongodb
+
+services:
+  # MongoDB — persistence cho bài học (Mongoose).
+  # (EN: MongoDB — persistence for the lesson (Mongoose).)
+  mongodb:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: starci_admin
+      MONGO_INITDB_ROOT_PASSWORD: starci_password
+      MONGO_INITDB_DATABASE: starci_nosql_db
+    ports:
+      # Ánh xạ cổng host 27017 → container 27017 (MongoDB).
+      # (EN: Map host port 27017 → container 27017 (MongoDB).)
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+
+networks:
+  2-mongoose-and-mongodb:
+    name: 2-mongoose-and-mongodb

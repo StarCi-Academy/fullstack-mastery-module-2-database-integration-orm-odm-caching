@@ -1,3 +1,7 @@
+/**
+ * Service CRUD mèo — TypeORM repository + demo 1:1, 1:N, N:N relationships.
+ * (EN: Cat CRUD service — TypeORM repository + demo 1:1, 1:N, N:N relationships.)
+ */
 import {
     Injectable, Logger, NotFoundException 
 } from "@nestjs/common"

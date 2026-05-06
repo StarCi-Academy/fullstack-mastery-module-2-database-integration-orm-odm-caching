@@ -1,3 +1,7 @@
+/**
+ * Controller REST `/cats` — demo TypeORM entity relationships.
+ * (EN: REST controller `/cats` — demo TypeORM entity relationships.)
+ */
 import {
     Controller, Get, Post, Body, Param, ParseIntPipe 
 } from "@nestjs/common"

@@ -1,0 +1,6 @@
+export * from "./compare.module"
+export * from "./compare.controller"
+export * from "./compare.service"
+export * from "./dto"
+export * from "./entities"
+export * from "./schemas"

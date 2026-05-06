@@ -1,12 +1,25 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+/**
+ * Controller gốc — health endpoint.
+ * (EN: Root controller — health endpoint.)
+ */
+import {
+    Controller,
+    Get,
+} from "@nestjs/common"
+import {
+    AppService,
+} from "./app.service"
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) {}
 
-  @Get('health')
-  getHealth() {
-    return this.appService.getHealth();
-  }
+    /**
+     * Trả trạng thái health cho root endpoint.
+     * (EN: Return health status for root endpoint.)
+     */
+    @Get()
+    getHealth() {
+        return this.appService.getHealth()
+    }
 }

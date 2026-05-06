@@ -1,6 +1,0 @@
-# Gom PostgreSQL (TypeORM) + MongoDB (Mongoose) cho bài 0-sql-vs-nosql-in-nestjs.
-# Dùng `docker compose -f .docker/development.yaml up -d` / `down -v` thay vì gọi từng file.
-# EN: Compose entrypoint that includes the per-engine stacks under `.docker/`.
-include:
-  - path: ./postgresql.yaml
-  - path: ./mongodb.yaml

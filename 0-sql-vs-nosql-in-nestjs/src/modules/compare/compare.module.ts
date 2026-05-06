@@ -1,33 +1,35 @@
+/**
+ * CompareModule — đăng ký TypeORM + Mongoose feature cho so sánh SQL vs NoSQL.
+ * (EN: CompareModule — registers TypeORM + Mongoose features for SQL vs NoSQL comparison.)
+ */
 import {
-    Module 
+    Module,
 } from "@nestjs/common"
 import {
-    MongooseModule 
+    MongooseModule,
 } from "@nestjs/mongoose"
 import {
-    TypeOrmModule 
+    TypeOrmModule,
 } from "@nestjs/typeorm"
 import {
-    CompareController 
+    CompareController,
 } from "./compare.controller"
 import {
-    CompareService 
+    CompareService,
 } from "./compare.service"
 import {
-    SqlComparisonItemEntity 
-} from "./entities/sql-comparison-item.entity"
+    SqlComparisonItemEntity,
+} from "./entities"
 import {
     NoSqlComparisonItem,
     NoSqlComparisonItemSchema,
-} from "./schemas/nosql-comparison-item.schema"
+} from "./schemas"
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([SqlComparisonItemEntity]),
         MongooseModule.forFeature([
-            {
-                name: NoSqlComparisonItem.name, schema: NoSqlComparisonItemSchema 
-            },
+            { name: NoSqlComparisonItem.name, schema: NoSqlComparisonItemSchema },
         ]),
     ],
     controllers: [CompareController],

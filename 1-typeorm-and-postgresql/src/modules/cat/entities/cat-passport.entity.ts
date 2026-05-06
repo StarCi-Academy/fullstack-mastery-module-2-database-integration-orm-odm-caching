@@ -1,3 +1,7 @@
+﻿/**
+ * Entity TypeORM — thuc the Cat.
+ * (EN: TypeORM entity — Cat entity.)
+ */
 import {
     Entity, PrimaryGeneratedColumn, Column, OneToOne 
 } from "typeorm"
@@ -6,28 +10,28 @@ import {
 } from "./cat.entity"
 
 /**
- * CatPassport Entity — Đại diện cho hộ chiếu của mèo.
- * Mỗi con mèo chỉ có duy nhất một hộ chiếu (1:1).
+ * CatPassport Entity â€” Äáº¡i diá»‡n cho há»™ chiáº¿u cá»§a mÃ¨o.
+ * Má»—i con mÃ¨o chá»‰ cÃ³ duy nháº¥t má»™t há»™ chiáº¿u (1:1).
  * (EN: Represents a cat's passport. Each cat has exactly one passport (1:1).)
  */
 @Entity("cat_passports")
 export class CatPassport {
   /**
-   * ID tự tăng.
+   * ID tá»± tÄƒng.
    * (EN: Auto-incremented ID.)
    */
   @PrimaryGeneratedColumn()
       id: number
 
   /**
-   * Số hiệu hộ chiếu.
+   * Sá»‘ hiá»‡u há»™ chiáº¿u.
    * (EN: Passport number.)
    */
   @Column()
       passportNumber: string
 
   /**
-   * Quan hệ 1:1 ngược lại với Cat.
+   * Quan há»‡ 1:1 ngÆ°á»£c láº¡i vá»›i Cat.
    * (EN: Inverse 1:1 relationship with Cat.)
    */
   @OneToOne(() => Cat,

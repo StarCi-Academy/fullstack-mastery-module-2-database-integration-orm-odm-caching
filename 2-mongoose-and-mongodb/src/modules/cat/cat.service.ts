@@ -1,10 +1,14 @@
+﻿/**
+ * Service xu ly logic nghiep vu cua Cat.
+ * (EN: Business logic service for Cat.)
+ */
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Cat, CatDocument } from './schemas/cat.schema';
 
 /**
- * Cat Service — Xử lý logic nghiệp vụ cho mèo bằng Mongoose.
+ * Cat Service â€” Xá»­ lÃ½ logic nghiá»‡p vá»¥ cho mÃ¨o báº±ng Mongoose.
  * (EN: Business logic service for cats using Mongoose.)
  */
 @Injectable()
@@ -12,38 +16,38 @@ export class CatService {
   private readonly logger = new Logger(CatService.name);
 
   constructor(
-    // Inject Mongoose Model đã đăng ký (EN: Inject registered Mongoose Model)
+    // Inject Mongoose Model Ä‘Ã£ Ä‘Äƒng kÃ½ (EN: Inject registered Mongoose Model)
     @InjectModel(Cat.name) private readonly catModel: Model<CatDocument>,
   ) {}
 
   /**
-   * Tạo mèo mới. (EN: Creates a new cat.)
+   * Táº¡o mÃ¨o má»›i. (EN: Creates a new cat.)
    *
-   * @param catData - Dữ liệu mèo (EN: cat data)
-   * @returns Promise<Cat> - Mèo vừa được tạo (EN: newly created cat)
+   * @param catData - Dá»¯ liá»‡u mÃ¨o (EN: cat data)
+   * @returns Promise<Cat> - MÃ¨o vá»«a Ä‘Æ°á»£c táº¡o (EN: newly created cat)
    */
   async create(catData: Partial<Cat>): Promise<Cat> {
-    // [prepare] Khởi tạo instance mới từ model
+    // [prepare] Khá»Ÿi táº¡o instance má»›i tá»« model
     // (EN: Prepare new instance from model)
     this.logger.log({ message: 'Preparing to create new cat', data: catData });
     const createdCat = new this.catModel(catData);
 
-    // [execute] Lưu vào MongoDB (EN: Execute save to MongoDB)
+    // [execute] LÆ°u vÃ o MongoDB (EN: Execute save to MongoDB)
     const savedCat = await createdCat.save();
 
-    // [confirm] Trả về và log thành công (EN: Confirm and log success)
+    // [confirm] Tráº£ vá» vÃ  log thÃ nh cÃ´ng (EN: Confirm and log success)
     this.logger.log({ message: 'Cat created successfully', id: savedCat._id });
     return savedCat;
   }
 
   /**
-   * Lấy toàn bộ danh sách mèo với search và filter cơ bản.
+   * Láº¥y toÃ n bá»™ danh sÃ¡ch mÃ¨o vá»›i search vÃ  filter cÆ¡ báº£n.
    * (EN: Retrieves all cats with basic search and filter.)
    *
    * @returns Promise<Cat[]>
    */
   async findAll(): Promise<Cat[]> {
-    // [execute] Truy vấn nâng cao: sort theo age giảm dần, limit 10
+    // [execute] Truy váº¥n nÃ¢ng cao: sort theo age giáº£m dáº§n, limit 10
     // (EN: Advanced query: sort by age descending, limit 10)
     this.logger.log('Fetching all cats from MongoDB...');
     return await this.catModel
@@ -54,17 +58,17 @@ export class CatService {
   }
 
   /**
-   * Tìm mèo theo tên (Minh họa syntax findOne).
+   * TÃ¬m mÃ¨o theo tÃªn (Minh há»a syntax findOne).
    * (EN: Find cat by name (illustrates findOne syntax).)
    */
   async findByName(name: string): Promise<Cat> {
     this.logger.log(`Searching for cat with name: ${name}`);
     
-    // [execute] Tìm kiếm theo thuộc tính name (đã đánh index trong schema)
+    // [execute] TÃ¬m kiáº¿m theo thuá»™c tÃ­nh name (Ä‘Ã£ Ä‘Ã¡nh index trong schema)
     // (EN: Search by name attribute (indexed in schema))
     const cat = await this.catModel.findOne({ name }).exec();
 
-    // [confirm] Kiểm tra (EN: Confirm)
+    // [confirm] Kiá»ƒm tra (EN: Confirm)
     if (!cat) {
       throw new NotFoundException(`Cat with name "${name}" not found`);
     }
@@ -73,10 +77,10 @@ export class CatService {
   }
 
   /**
-   * Cập nhật thông tin mèo theo ID. (EN: Updates cat by ID.)
+   * Cáº­p nháº­t thÃ´ng tin mÃ¨o theo ID. (EN: Updates cat by ID.)
    */
   async update(id: string, updateData: Partial<Cat>): Promise<Cat> {
-    // [execute] findByIdAndUpdate: { new: true } để trả về bản ghi sau khi update
+    // [execute] findByIdAndUpdate: { new: true } Ä‘á»ƒ tráº£ vá» báº£n ghi sau khi update
     // (EN: findByIdAndUpdate: { new: true } to return the record after update)
     const updatedCat = await this.catModel
       .findByIdAndUpdate(id, updateData, { new: true })

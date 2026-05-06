@@ -1,3 +1,7 @@
+﻿/**
+ * CatModule — dang ky cac thanh phan cua feature Cat.
+ * (EN: CatModule — registers components for Cat feature.)
+ */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cat } from './cat.entity';
@@ -5,8 +9,8 @@ import { CatService } from './cat.service';
 import { CatController } from './cat.controller';
 
 /**
- * Cat Module — Đăng ký entity và bộ xử lý logic cho mèo.
- * (EN: Cat Module — Registers entity and business logic for cats.)
+ * Cat Module â€” ÄÄƒng kÃ½ entity vÃ  bá»™ xá»­ lÃ½ logic cho mÃ¨o.
+ * (EN: Cat Module â€” Registers entity and business logic for cats.)
  */
 @Module({
   imports: [TypeOrmModule.forFeature([Cat])],

@@ -1,12 +1,9 @@
+﻿/**
+ * Entry Node (`nest build` → dist/main.js) — chỉ gọi bootstrap đã export.
+ * (EN: Node entry (`nest build` → dist/main.js) — invokes exported bootstrap only.)
+ */
 import {
-    NestFactory 
-} from "@nestjs/core"
-import {
-    AppModule 
-} from "./app.module"
+    bootstrap,
+} from "./bootstrap"
 
-async function bootstrap() {
-    const app = await NestFactory.create(AppModule)
-    await app.listen(process.env.PORT ?? 3000)
-}
-bootstrap()
+void bootstrap()

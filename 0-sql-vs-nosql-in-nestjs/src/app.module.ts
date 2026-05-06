@@ -1,29 +1,31 @@
+/**
+ * Module gốc — kết nối PostgreSQL (TypeORM) + MongoDB (Mongoose) + CompareModule.
+ * (EN: Root module — connects PostgreSQL (TypeORM) + MongoDB (Mongoose) + CompareModule.)
+ */
 import {
-    Module 
+    Module,
 } from "@nestjs/common"
 import {
-    MongooseModule 
+    MongooseModule,
 } from "@nestjs/mongoose"
 import {
-    TypeOrmModule 
+    TypeOrmModule,
 } from "@nestjs/typeorm"
 import {
-    AppController 
+    AppController,
 } from "./app.controller"
 import {
-    AppService 
+    AppService,
 } from "./app.service"
 import {
-    CompareModule 
-} from "./modules/compare/compare.module"
-import {
-    SqlComparisonItemEntity 
-} from "./modules/compare/entities/sql-comparison-item.entity"
+    CompareModule,
+    SqlComparisonItemEntity,
+} from "./modules"
 
 @Module({
     imports: [
         // Kết nối PostgreSQL cho nhánh SQL (TypeORM).
-        // EN: PostgreSQL connection for SQL branch (TypeORM).
+        // (EN: PostgreSQL connection for SQL branch (TypeORM).)
         TypeOrmModule.forRoot({
             type: "postgres",
             host: process.env.PG_HOST ?? "localhost",
@@ -35,14 +37,14 @@ import {
             synchronize: true,
         }),
         // Kết nối MongoDB cho nhánh NoSQL (Mongoose).
-        // EN: MongoDB connection for NoSQL branch (Mongoose).
+        // (EN: MongoDB connection for NoSQL branch (Mongoose).)
         MongooseModule.forRoot(
             process.env.MONGO_URI ??
-        "mongodb://starci_admin:starci_password@localhost:27017/starci_nosql_db?authSource=admin",
+            "mongodb://starci_admin:starci_password@localhost:27017/starci_nosql_db?authSource=admin",
         ),
         CompareModule,
     ],
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

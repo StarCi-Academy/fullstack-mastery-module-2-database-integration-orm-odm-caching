@@ -1,0 +1,51 @@
+# Stack hạ tầng bài 0-sql-vs-nosql-in-nestjs — chỉ infra, backend chạy local (nest start).
+# (EN: Infrastructure stack for 0-sql-vs-nosql-in-nestjs — infra only, backend runs locally.)
+#
+# Thư mục: cd fullstack-mastery-module-2-database-integration-orm-odm-caching/0-sql-vs-nosql-in-nestjs/.docker
+# (EN: Working dir: cd fullstack-mastery-module-2-database-integration-orm-odm-caching/0-sql-vs-nosql-in-nestjs/.docker)
+#
+# Khởi chạy: docker compose up -d
+# (EN: Start: docker compose up -d)
+#
+# Dừng & xóa: docker compose down -v
+# (EN: Stop & clean: docker compose down -v)
+name: 0-sql-vs-nosql-in-nestjs
+
+services:
+  # PostgreSQL — persistence cho phần SQL (TypeORM).
+  # (EN: PostgreSQL — persistence for the SQL section (TypeORM).)
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: starci_user
+      POSTGRES_PASSWORD: starci_password
+      POSTGRES_DB: starci_sql_db
+    ports:
+      # Ánh xạ cổng host 5432 → container 5432 (PostgreSQL).
+      # (EN: Map host port 5432 → container 5432 (PostgreSQL).)
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  # MongoDB — persistence cho phần NoSQL (Mongoose).
+  # (EN: MongoDB — persistence for the NoSQL section (Mongoose).)
+  mongodb:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: starci_admin
+      MONGO_INITDB_ROOT_PASSWORD: starci_password
+      MONGO_INITDB_DATABASE: starci_nosql_db
+    ports:
+      # Ánh xạ cổng host 27017 → container 27017 (MongoDB).
+      # (EN: Map host port 27017 → container 27017 (MongoDB).)
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  pg_data:
+  mongo_data:
+
+networks:
+  0-sql-vs-nosql-in-nestjs:
+    name: 0-sql-vs-nosql-in-nestjs
